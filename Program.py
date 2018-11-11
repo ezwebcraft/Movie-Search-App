@@ -6,25 +6,19 @@ MovieResult = collections.namedtuple(
     "imdb_code,title,duration,director,year,rating,imdb_score,keywords,genres",
 )
 
-search = "capital"
+search = 'runner'
 
-url = "http://movie_service.talkpython.fm/api/search/capital".format(search)
+url = "http://movie_service.talkpython.fm/api/search/{}".format(search)
 
 resp = requests.get(url)
-
 resp.raise_for_status()
 
 movie_data = resp.json()
+movies_list = movie_data.get("hits")
 
-movies = movie_data.get("hits")
-# print(resp.status_code)
-
-# print(type(movies),": \n",movies)
-
-movies_list = []
-
+movies = []
 for md in movies_list:
-    m = MoviesResult(
+    m = MovieResult(
         imdb_code=md.get("imdb_code"),
         title=md.get("title"),
         duration=md.get("duration"),
