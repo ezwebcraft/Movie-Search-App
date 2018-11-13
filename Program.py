@@ -1,25 +1,18 @@
-import requests
-import collections
+import movie_svc
 
-MovieResult = collections.namedtuple(
-    "MovieResults",
-    "imdb_code,title,duration,director,year,rating,imdb_score,keywords,genres",
-)
-
-search = input("Enter a name of a movie: ")
-
-url = "http://movie_service.talkpython.fm/api/search/{}".format(search)
-
-resp = requests.get(url)
-resp.raise_for_status()
-
-movie_data = resp.json()
-movies_list = movie_data.get("hits")
+def main():
+    print_header()
+    search_event_loop()
 
 
-movies = [MovieResult(**md) for md in movies_list]
+def print_header():
+    pass
 
-print("Found {} movies from search {}".format(len(movies), search))
 
-for m in movies:
-    print("{}  -----  {}".format(m.year, m.title))
+def search_event_loop():
+    pass
+
+
+if __name__ == '__main__':
+    main()
+
