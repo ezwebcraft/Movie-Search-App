@@ -40,10 +40,13 @@ movies_list = movie_data.get("hits")
 # def method(7,2,z=2)
 
 
-movies = []
-for md in movies_list:
-    m = MovieResult(**md)
-    movies.append(m) 
+movies = [
+    MovieResult(**md)
+    for md in movies_list
+]
+# for md in movies_list:
+#     m = MovieResult(**md)
+#     movies.append(m) 
 
 print("Found {} movies from search {}".format(len(movies), search))
 
