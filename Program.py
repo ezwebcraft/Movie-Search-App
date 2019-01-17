@@ -10,8 +10,17 @@ def print_header():
 
 
 def search_event_loop():
-    pass
+    search = 'ONCE_THROUGH_LOOP'
+    if search != 'x':
+        results = movie_svc.find_movies(search)
+        print("Found {} result.".format(len(results)))
+        for r in results:
+            print('{} -- {}'.format(
+                r.year,r.title
+                ))
+        print()
 
+    print('Exiting .... ... ... .')
 
 if __name__ == '__main__':
     main()
