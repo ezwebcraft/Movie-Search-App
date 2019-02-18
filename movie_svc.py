@@ -6,20 +6,24 @@ MovieResult = collections.namedtuple(
     "imdb_code,title,duration,director,year,rating,imdb_score,keywords,genres",
 )
 
-search = input("Enter a name of a movie: ")
 
-url = "http://movie_service.talkpython.fm/api/search/{}".format(search)
+def find_movies(search_text):
 
-resp = requests.get(url)
-resp.raise_for_status()
+    search = input("Enter a name of a movie: ")
 
-movie_data = resp.json()
-movies_list = movie_data.get("hits")
+    url = "http://movie_service.talkpython.fm/api/search/{}".format(search)
+
+    resp = requests.get(url)
+    resp.raise_for_status()
+
+    movie_data = resp.json()
+    movies_list = movie_data.get("hits")
+
+    movies = [MovieResult(**md) for md in movies_list]
+
+    return movies
+    # print("Found {} movies from search {}".format(len(movies), search))
 
 
-movies = [MovieResult(**md) for md in movies_list]
-
-print("Found {} movies from search {}".format(len(movies), search))
-
-for m in movies:
-    print("{}  -----  {}".format(m.year, m.title))
+# for m in movies:
+#   print("{}  -----  {}".format(m.year, m.title))
