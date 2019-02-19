@@ -22,9 +22,11 @@ def search_event_loop():
                 for r in results:
                     print("{} -- {}".format(r.year, r.title))
                 print()
-        except  requests.exceptions as ce:
+        except ValueError as ce:
+            print("ValueError due to \n{}.....!".format(type(ce)))
+        except requests.exceptions as ce:
             print("Network Error due to \n{}.....!".format(type(ce)))
-        except  Exception as x:
+        except Exception as x:
             print("Error due to {}.....!".format(x))
 
     print("Exiting .... ... ... .")

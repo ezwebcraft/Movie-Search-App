@@ -3,13 +3,18 @@ import collections
 
 MovieResult = collections.namedtuple(
     "MovieResults",
-    "imdb_code,title,duration,director,year,rating,imdb_score,keywords,genres")
+    "imdb_code,title,duration,director,year,rating,imdb_score,keywords,genres",
+)
+
 
 def find_movies(search_text):
 
-    search = input("Enter a name of a movie: ")
+    if not search_text or not search_text.strip():
+        raise ValueError("Missing proper input!!!")
 
-    url = "http://movie_service.talkpython.fm/api/search/{}".format(search)
+#    search = input("Enter a name of a movie: ")
+
+    url = "http://movie_service.talkpython.fm/api/search/{}".format(search_text)
 
     resp = requests.get(url)
     resp.raise_for_status()
@@ -22,4 +27,3 @@ def find_movies(search_text):
     movies.sort(key=lambda m: -m.year)
 
     return movies
-
