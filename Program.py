@@ -1,4 +1,5 @@
 import movie_svc
+import requests.exceptions
 
 
 def main():
@@ -21,8 +22,10 @@ def search_event_loop():
                 for r in results:
                     print("{} -- {}".format(r.year, r.title))
                 print()
-        except:
-            print("Error .....!")
+        except  requests.exceptions as ce:
+            print("Network Error due to \n{}.....!".format(type(ce)))
+        except  Exception as x:
+            print("Error due to {}.....!".format(x))
 
     print("Exiting .... ... ... .")
 
